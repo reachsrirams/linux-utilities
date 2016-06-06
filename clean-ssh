@@ -1,0 +1,2 @@
+ssh-keygen -R $1
+ssh "$@"
