@@ -1,3 +1,7 @@
+function git-resync-clean() {
+	git fetch origin && git reset --hard origin/master && git clean -f -d
+}
+
 function git-commit-push-master() {
         git commit -a -m "$1"
         git push -u origin master
