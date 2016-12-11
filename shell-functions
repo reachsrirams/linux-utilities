@@ -1,0 +1,3 @@
+function myrysnc() {
+	rsync -rtvhua --progress --stats --delete-delay $1 $2
+}
