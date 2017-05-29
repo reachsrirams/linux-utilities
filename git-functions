@@ -30,3 +30,10 @@ function git-rename-branch() {
         git push --set-upstream origin $2   # Push the new branch and set local branch to track the new remote
 }
 
+function git-revert-and-sync-master() {
+	git fetch origin && git reset --hard origin/master && git clean -f -d
+}
+
+function git-revert-and-sync-branch() {
+	git fetch origin && git reset --hard origin/$1 && git clean -f -d
+}
