@@ -1,0 +1,1 @@
+ping -q -c 3 $1 | awk -v host=$1 '/packet loss/ {print host, $7}'
