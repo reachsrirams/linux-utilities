@@ -37,3 +37,15 @@ function git-revert-and-sync-master() {
 function git-revert-and-sync-branch() {
 	git fetch origin && git reset --hard origin/$1 && git clean -f -d
 }
+
+function git-merge-to-master() {
+        git checkout master
+        git merge $1
+        echo "Waiting 15s to confirm the git push"
+        sleep 15
+        git push -u origin master
+        echo "Waiting 10s to confirm the git branch delete"
+        sleep 10
+        git branch -d $1
+}
+
