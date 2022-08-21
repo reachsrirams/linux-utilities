@@ -39,3 +39,15 @@ function gcloud-activate-config() {
 	gcloud config configurations activate $1
         gcloud auth login
 }
+
+function gcloud-compute-ssh() {
+	echo "Syntax: gcloud-compute-ssh <ssh_config_hostname> <command>"
+        sleep 5
+	gcloud compute ssh $1 --command="$2"
+}
+
+function gcloud-scp-keys() {
+	echo "Syntax: gcloud-scp-keys <localfile> <ssh_config_hostname> <destinationfile>"
+        sleep 5
+	gcloud compute scp $1 $2:$3
+	
