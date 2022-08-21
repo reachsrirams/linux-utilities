@@ -49,3 +49,7 @@ function git-merge-to-master() {
         git branch -d $1
 }
 
+function git-config() {
+	git config --global user.name "Sriram S"
+	git config --global user.email sriram@cloudbuilder.in
+}

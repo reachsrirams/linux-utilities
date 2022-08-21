@@ -1,0 +1,41 @@
+function gcloud-create-vm() {
+	echo "Syntax: gcloud-create-vm <vm_instance_name>"
+	sleep 5
+	gcloud compute instances create $1 --machine-type=e2-medium --image-family=ubuntu-2004-lts --image-project=ubuntu-os-cloud --boot-disk-size=30GB --boot-disk-type=pd-ssd --tags=http-server,https-server
+}
+
+function gcloud-get-external-ip() {
+	echo "Syntax gcloud-get-external-ip <vm_instance_name>"
+	sleep 5
+	gcloud compute instances describe $1 --format='get(networkInterfaces[0].accessConfigs[0].natIP)'
+}
+
+function gcloud-delete-vm() {
+	echo "Syntax: gcloud-delete-vm <vm_instance_name>"
+	sleep 5
+	gcloud compute instances delete $1
+}
+
+function gcloud-create-config() {
+	echo "Syntax: gcloud-create-config <config_name> <gcp_project_name> <zone> <region>"
+	sleep 5
+	gcloud config configurations list
+	gcloud config configurations create $1
+	gcloud config configurations activate $1
+	gcloud auth login
+	gcloud config set project $2
+	gcloud config set compute/zone $3
+	gcloud config configurations list
+	gcloud config set compute/region $4
+	gcloud config configurations list
+}
+
+function gcloud-activate-config() {
+	echo "Printing configurations..."
+	sleep 1
+	gcloud config configurations list
+	echo "Syntax: gcloud-activate-config <config_name>"
+	sleep 5
+	gcloud config configurations activate $1
+        gcloud auth login
+}
