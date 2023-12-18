@@ -3,7 +3,7 @@ function git-resync-clean() {
 }
 
 function git-commit-push-branch() {
-	if [ $# -ne 1 ]
+	if [ $# -ne 2 ]
 	then
 		echo "Correct Syntax: $0 <commit message in double quotes> <branch name>."
 		exit 1;
@@ -12,17 +12,24 @@ function git-commit-push-branch() {
         git push -u origin $2
 }
 
-function git-commit-push-master() {
-        git-commit-push-branch $1 master
-}
-
 function git-add-commit-push-branch() {
         git add --all
         git-commit-push-branch $1 $2
 }
 
-function git-add-commit-push-master() {
-	git-add-commit-push-branch "$1" master
+function git-scommit-push-branch() {
+	if [ $# -ne 2 ]
+	then
+		echo "Correct Syntax: $0 <commit message in double quotes> <branch name>."
+		exit 1;
+	fi
+        git commit -S -a -m "$1"
+        git push -u origin $2
+}
+
+function git-add-scommit-push-branch() {
+        git add --all
+        git-scommit-push-branch $1 $2
 }
 
 function git-rename-branch() {
