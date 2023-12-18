@@ -6,10 +6,10 @@ function git-commit-push-branch() {
 	if [ $# -ne 2 ]
 	then
 		echo "Correct Syntax: $0 <commit message in double quotes> <branch name>."
-		exit 1;
+	else
+	        git commit -a -m "$1"
+        	git push -u origin $2
 	fi
-        git commit -a -m "$1"
-        git push -u origin $2
 }
 
 function git-add-commit-push-branch() {
@@ -21,10 +21,10 @@ function git-scommit-push-branch() {
 	if [ $# -ne 2 ]
 	then
 		echo "Correct Syntax: $0 <commit message in double quotes> <branch name>."
-		exit 1;
+	else
+	        git commit -a -m "$1"
+        	git push -u origin $2
 	fi
-        git commit -S -a -m "$1"
-        git push -u origin $2
 }
 
 function git-add-scommit-push-branch() {
