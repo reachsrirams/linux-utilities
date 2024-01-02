@@ -22,7 +22,7 @@ function git-scommit-push-branch() {
 	then
 		echo "Correct Syntax: $0 <commit message in double quotes> <branch name>."
 	else
-	        git commit -a -m "$1"
+	        git commit -S -a -m "$1"
         	git push -u origin $2
 	fi
 }
